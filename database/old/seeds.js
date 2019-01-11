@@ -24,4 +24,4 @@ for (let i = 0; i < 100; i++) {
 
   db.query(`INSERT INTO restaurants (name, address, number, picture, stars, quality, delivery, accuracy) VALUES ("${companyName}","${address}","${number}","${picture}","${stars}", "${quality}", "${delivery}", "${accuracy}");`);
   db.query(`INSERT INTO users (name, email) VALUES ("${name}","${email}");`);
-} 
+}
