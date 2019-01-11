@@ -1,0 +1,32 @@
+.navbar {
+  height: 60px;
+}
+
+.profile {
+  padding-top: 70px;
+  width: 75%;
+  height: 345px;
+  background-color: blue;
+  position: relative;
+}
+
+.profile-buttons {
+  float: right;
+  padding-right: 75px;
+}
+
+.info {
+  background-color:white;
+  border: 1px solid;
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+}
+
+.stars {
+  color: #ffac00;
+}
+.circle {
+  border-radius: 50%;
+}
+
