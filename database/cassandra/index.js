@@ -4,7 +4,7 @@ const { selectQueryString,
   insertQueryString, nextIdQueryString, updateNextId } = require('./queryStringHelpers');
 
 // Connect to the cluster
-const client = new cassandra.Client({contactPoints: ['127.0.0.1'], keyspace: 'prof_serv', localDataCenter: 'datacenter1'});
+const client = new cassandra.Client({contactPoints: ['127.0.0.1'], keyspace: 'profile_service', localDataCenter: 'datacenter1'});
 
 // Calls callback when selection query from db is successful.
 const get = (conditions, callback) => {
