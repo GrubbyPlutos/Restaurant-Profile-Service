@@ -1,13 +1,15 @@
 const cassandra = require('cassandra-driver');
 const async = require('async');
 const { selectQueryString,
-  insertQueryString, nextIdQueryString, updateNextId } = require('./queryStringHelpers');
+  insertQueryString, nextIdQueryString, updateNextId,
+  updateQueryString,
+  deleteQueryString } = require('./queryStringHelpers');
 
 // Connect to the cluster
-const client = new cassandra.Client({contactPoints: ['127.0.0.1'], keyspace: 'profile_service', localDataCenter: 'datacenter1'});
+const client = new cassandra.Client({contactPoints: ['127.0.0.1'], keyspace: 'prof_serv', localDataCenter: 'datacenter1'});
 
 // Calls callback when selection query from db is successful.
-const get = (conditions, callback) => {
+const getFromDb = (conditions, callback) => {
   client.execute(selectQueryString(conditions), (err, results) => {
     if (err) {
       return callback('ERROR IN GETTING RESTAURANT GIVEN CONDITIONS');
@@ -17,7 +19,7 @@ const get = (conditions, callback) => {
 };
 
 // Posts (inserts) a new restaurant into the db with a unique restaurant Id.
-const post = (rest, callback) => {
+const postToDb = (rest, callback) => {
   client.execute(nextIdQueryString(), (nextIdErr, nextIdResults) => {
     if (nextIdErr) {
       return callback('ERROR IN GETTING NEXT RESTAURANT ID.');
@@ -40,13 +42,31 @@ const post = (rest, callback) => {
   });
 };
 
-// const update = () => {};
+// Updates restaurant records that match specific 'selectors' to whatever 'updateChanges' keys indicate.
+const updateInDb = ({ selectors, updateChanges }, callback) => {
+  client.execute(updateQueryString(selectors, updateChanges), (updateRestErr, updateResults) => {
+    if (updateRestErr) {
+      return callback('ERROR IN UPDATING RESTAURANT.');
+    }
+    callback(null, updateResults);
+  });
+};
 
-// const delete = () => {};
+
+// Deletes a restaurant with a given id
+const deleteFromDb = ({ selectors }, callback) => {
+  client.execute(deleteQueryString(selectors), (deleteRestErr, deleteRestResults) => {
+    if (deleteRestErr) {
+      return callback('ERROR IN DELETING RESTAURANT');
+    }
+    callback(null, deleteRestResults);
+  });
+};
+
 
 module.exports = {
   get,
   post,
-  // update,
-  // delete,
+  update,
+  deleteFromDb,
 };
