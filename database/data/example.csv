@@ -1,5 +1,4 @@
 id,name,address,number,picture,stars,quality,delivery,accuracy
-0,"Swift, Douglas and Cronin","355 Jamie Harbors","285.346.5655 x810","http://lorempixel.com/640/480/food",1,61,28,63
 1,"Stamm - Stanton","94594 Wellington Turnpike","344.040.6127","http://lorempixel.com/640/480/food",2,97,43,19
 2,"Luettgen, Robel and Grimes","0527 Reta Locks","(642) 639-3857 x229","http://lorempixel.com/640/480/food",1,28,97,49
 3,"Schuster, Kutch and Marks","63912 Hailey Ridge","104-123-2628 x98398","http://lorempixel.com/640/480/food",0,76,85,98
@@ -999,3 +998,4 @@ id,name,address,number,picture,stars,quality,delivery,accuracy
 997,"Hudson - Labadie","0163 Zulauf Spurs","(157) 984-4476","http://lorempixel.com/640/480/food",2,41,9,98
 998,"Cartwright Inc","597 Danyka Plains","(328) 189-8922","http://lorempixel.com/640/480/food",1,13,42,16
 999,"Langosh LLC","91906 Wisozk Forges","667-156-4783","http://lorempixel.com/640/480/food",5,29,99,32
+1000,"Swift, Douglas and Cronin","355 Jamie Harbors","285.346.5655 x810","http://lorempixel.com/640/480/food",1,61,28,63
