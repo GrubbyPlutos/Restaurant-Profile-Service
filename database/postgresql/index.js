@@ -1,11 +1,11 @@
 const { Client } = require('pg');
 const { selectQueryString,
-  insertQueryString } = require('./queryStringHelpers');
-//   updateQueryString,
-//   deleteQueryString } = require('./queryStringHelpers');
+  insertQueryString,
+  updateQueryString,
+  deleteQueryString } = require('./queryStringHelpers');
 
 const client = new Client({
-  database: 'prof_serv',
+  database: 'profile_service',
   port: 5432,
 });
 
@@ -23,22 +23,27 @@ const getFromDb = conditions => {
 // Posts (inserts) a new restaurant into the db with a unique restaurant Id.
 const postToDb = rest => {
   return client.query(insertQueryString(rest))
-    .then(console.log)
     .catch(() => console.log('ERROR INSERTING RESTAURANT.'));
 };
 
 
-// const updateInDb = () => {
+// Updates restaurant records that match specific 'selectors' to whatever 'updateChanges' keys indicate.
+const updateInDb = ({ selectors, updateChanges }) => {
+  return client.query(updateQueryString(selectors, updateChanges))
+    .catch(() => console.log('ERROR UPDATING RESTAURANT.'));
+};
 
-// };
 
-// const deleteFromDb = () => {
+// Deletes a restaurant with a given id
+const deleteFromDb = ({ selectors }) => {
+  return client.query(deleteQueryString(selectors))
+    .catch(() => console.log('ERROR IN DELETING RESTAURANT.'));
+};
 
-// };
 
 module.exports = {
   getFromDb,
   postToDb,
-  // updateInDb,
-  // deleteFromDb,
+  updateInDb,
+  deleteFromDb,
 };

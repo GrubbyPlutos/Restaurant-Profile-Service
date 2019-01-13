@@ -57,12 +57,12 @@ const deleteQueryString = (selectors) => {
   let selectorValues = selectorKeys.map(key => selectors[key]);
   let selectorStr = keyValPairStr(selectorKeys, selectorValues, 'AND');
 
-  return `DELETE FROM restaurants WHERE ${selectorStr};`
+  return `DELETE FROM restaurants WHERE ${selectorStr};`;
 };
 
 module.exports = {
   selectQueryString,
   insertQueryString,
-  // updateQueryString,
-  // deleteQueryString,
+  updateQueryString,
+  deleteQueryString,
 };
