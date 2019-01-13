@@ -28,10 +28,41 @@ const selectQueryString = conditions => {
   let keys = Object.keys(conditions);
   let values = keys.map(key => conditions[key]);
   let keyValuePairStr = keyValPairStr(keys, values, 'AND');
+  // Filtering is allowed for now as MVP for making the API CRUDdy
   return `SELECT * FROM restaurants WHERE ${keyValuePairStr};`;
 };
 
 
+// Inserts a restaurant record into the restaurant table.
+const insertQueryString = rest => `INSERT INTO restaurants (name, address, number, picture, stars, quality, delivery, accuracy) VALUES('${rest.name}', '${rest.address}', '${rest.number}', '${rest.picture}', ${rest.stars}, ${rest.quality}, ${rest.delivery}, ${rest.accuracy});`;
+
+
+// Returns update query string to query
+const updateQueryString = (selectors, updateChanges) => {
+  let selectorKeys = Object.keys(selectors);
+  let selectorValues = selectorKeys.map(key => selectors[key]);
+  let selectorStr = keyValPairStr(selectorKeys, selectorValues, 'AND');
+
+  let updateKeys = Object.keys(updateChanges);
+  let updateValues = updateKeys.map(key => updateChanges[key]);
+  let updatesStr = keyValPairStr(updateKeys, updateValues, ',');
+
+  return `UPDATE restaurants SET ${updatesStr} WHERE ${selectorStr};`;
+};
+
+
+// Returns the query string for deleting a restaurant that matches the selectors
+const deleteQueryString = (selectors) => {
+  let selectorKeys = Object.keys(selectors);
+  let selectorValues = selectorKeys.map(key => selectors[key]);
+  let selectorStr = keyValPairStr(selectorKeys, selectorValues, 'AND');
+
+  return `DELETE FROM restaurants WHERE ${selectorStr};`
+};
+
 module.exports = {
   selectQueryString,
+  insertQueryString,
+  // updateQueryString,
+  // deleteQueryString,
 };
