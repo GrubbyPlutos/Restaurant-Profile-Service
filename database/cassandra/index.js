@@ -5,7 +5,7 @@ const { selectQueryString,
   deleteQueryString } = require('./queryStringHelpers');
 
 // Connect to the cluster
-const client = new cassandra.Client({contactPoints: ['127.0.0.1'], keyspace: 'prof_serv', localDataCenter: 'datacenter1'});
+const client = new cassandra.Client({contactPoints: ['127.0.0.1'], keyspace: 'profile_service', localDataCenter: 'datacenter1'});
 
 // Returns promise that resolves with the selection query results from db if successful.
 const getFromDb = conditions => {
@@ -42,7 +42,7 @@ const postToDb = rest => {
 // Resolves in the update query results.
 const updateInDb = ({ selectors, updateChanges }) => {
   return client.execute(updateQueryString(selectors, updateChanges))
-    .catch(updateRestErr => console.log('ERROR IN UPDATING RESTAURANT.'))
+    .catch(updateRestErr => console.log('ERROR IN UPDATING RESTAURANT.'));
 };
 
 
@@ -50,7 +50,7 @@ const updateInDb = ({ selectors, updateChanges }) => {
 // Resolves in the delete query results.
 const deleteFromDb = ({ selectors }) => {
   return client.execute(deleteQueryString(selectors))
-    .catch(deleteRestErr => console.log('ERROR IN DELETING RESTAURANT'))
+    .catch(deleteRestErr => console.log('ERROR IN DELETING RESTAURANT'));
 };
 
 
