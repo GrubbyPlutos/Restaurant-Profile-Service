@@ -7,8 +7,11 @@ const getPicture = () => faker.image.food();
 const getPhone = () => faker.phone.phoneNumber();
 const getAddress = () => faker.address.streetAddress();
 
-const createRestaurant = id => ({
-  id,
+// Depending on if an 'id' header is wanted in the headers and restaurant object generation,
+// uncomment (comment) out lines 12 (13) and 22 (23). 
+
+// const createRestaurant = (id) => ({
+const createRestaurant = () => ({
   name: getName(),
   address: getAddress(),
   number: getPhone(),
@@ -19,7 +22,8 @@ const createRestaurant = id => ({
   accuracy: get0To100(),
 });
 
-const header =  ['id', 'name', 'address', 'number', 'picture', 'stars', 'quality', 'delivery', 'accuracy',];
+// const header =  ['id', 'name', 'address', 'number', 'picture', 'stars', 'quality', 'delivery', 'accuracy',];
+const header =  ['name', 'address', 'number', 'picture', 'stars', 'quality', 'delivery', 'accuracy',];
 
 module.exports = {
   createRestaurant,

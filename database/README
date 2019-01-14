@@ -1,0 +1,47 @@
+CRUD API for front-end:
+
+1. Create:
+  - method: 'POST'
+  - endpoint: '/restaurants'
+  - body (JSON-stringified):
+    {
+      id: type integer
+      name: type string
+      address: type string
+      number: type string
+      picture: type string
+      stars: type integer
+      quality: type integer
+      delivery: type integer
+      accuracy: type integer
+    }
+
+
+2. Read: 
+  - method: 'GET'
+  - endpoint: '/restaurants/:id/profile'
+  - body: none
+
+
+3. Update: 
+  - method: 'PUT'
+  - endpoint: '/restaurants'
+  - body (JSON):
+    {
+      selectors: {
+
+      },
+      updateChanges: {
+
+      }
+    }
+
+4. Delete:
+  - method: 'DELETE'
+  - endpoint: '/restaurants'
+  - body (JSON):
+    {
+      selectors: {
+        
+      }
+    }

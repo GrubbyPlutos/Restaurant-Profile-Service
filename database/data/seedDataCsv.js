@@ -1,7 +1,7 @@
 const fs = require('fs');
 const { createRestaurant, header } = require('./helpers');
 
-const file = fs.createWriteStream('data.csv');
+const file = fs.createWriteStream('dataNoId.csv');
 
 // Write the header once
 for (let i = 0; i < header.length; i += 1) {
@@ -32,7 +32,7 @@ const createDataCsvFile = () => {
   let result = true;
 
   while (i < entries && result) {
-    let restaurant = createRestaurant(i);
+    let restaurant = createRestaurant();
     result = file.write(getRestaurantString(restaurant));
     i += 1;
     if (i % 1000000 === 0) {
