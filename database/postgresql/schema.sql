@@ -6,5 +6,3 @@ CREATE TABLE restaurants (id SERIAL PRIMARY KEY, name varchar(255), address varc
 
 COPY restaurants (name, address, number, picture, stars, quality, delivery, accuracy)
 FROM '<filepath>/dataNoId.csv'  DELIMITER ',' CSV HEADER;
-
-INSERT INTO restaurants (name, address, number, picture, stars, quality, delivery, accuracy) VALUES ("Bogan - Dickinson","75661 Evie Valley","(136) 765-9593","http://lorempixel.com/640/480/food",1,67,10,38);
