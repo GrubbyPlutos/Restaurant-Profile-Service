@@ -9,7 +9,12 @@ const client = new Client({
   port: 5432,
 });
 
-client.connect();
+client.connect((err) => {
+  if (err) {
+    return console.error(err);
+  }
+  console.log('Connected to PostgreSQL db!');
+});
 
 
 // Returns a promise that resolves in the selection query results

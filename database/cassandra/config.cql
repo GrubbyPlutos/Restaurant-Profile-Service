@@ -6,6 +6,8 @@ CREATE TABLE restaurant (id bigint PRIMARY KEY, name text, address text, number 
 
 COPY restaurant (id, name, address, number, picture, stars, quality, delivery, accuracy) FROM '<filepath>/data.csv';
 
+CREATE INDEX restaurant_names ON restaurant( name );
+
 CREATE TABLE nextIdTable (name text PRIMARY KEY, nextId bigint);
 
 INSERT INTO nextIdTable (name, nextId) VALUES ('next', 10000001);

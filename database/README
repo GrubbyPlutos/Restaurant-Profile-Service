@@ -5,7 +5,6 @@ CRUD API for front-end:
   - endpoint: '/restaurants'
   - body (JSON-stringified):
     {
-      id: type integer
       name: type string
       address: type string
       number: type string
@@ -25,23 +24,20 @@ CRUD API for front-end:
 
 3. Update: 
   - method: 'PUT'
-  - endpoint: '/restaurants'
-  - body (JSON):
+  - endpoint: '/restaurants/:id'
+  - body (JSON) 1 or more of the following:
     {
-      selectors: {
-
-      },
-      updateChanges: {
-
-      }
+      name: type string
+      address: type string
+      number: type string
+      picture: type string
+      stars: type integer
+      quality: type integer
+      delivery: type integer
+      accuracy: type integer
     }
 
 4. Delete:
   - method: 'DELETE'
-  - endpoint: '/restaurants'
-  - body (JSON):
-    {
-      selectors: {
-        
-      }
-    }
+  - endpoint: '/restaurants/:id'
+  - body: none

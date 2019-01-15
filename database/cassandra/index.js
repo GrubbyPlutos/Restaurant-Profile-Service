@@ -5,12 +5,31 @@ const { selectQueryString,
   deleteQueryString } = require('./queryStringHelpers');
 
 // Connect to the cluster
-const client = new cassandra.Client({contactPoints: ['127.0.0.1'], keyspace: 'profile_service', localDataCenter: 'datacenter1'});
+const client = new cassandra.Client({
+  contactPoints: ['127.0.0.1'],
+  keyspace: 'profile_service',
+  localDataCenter: 'datacenter1',
+  socketOptions: {
+    readTimeout: 100000,
+  },
+});
+
+client.connect((err) => {
+  if (err) {
+    return console.error(err);
+  }
+  console.log('Connected to cluster with %d host(s): %j', client.hosts.length, client.hosts.keys());
+});
 
 // Returns promise that resolves with the selection query results from db if successful.
 const getFromDb = conditions => {
-  return client.execute(selectQueryString(conditions))
-    .then(selectResults => selectResults.rows)
+  let selectQStr = selectQueryString(conditions);
+
+  return client.execute(selectQStr)
+    .then(selectResults => {
+      console.log('SELECT RESULTS', selectResults);
+      return selectResults.rows;
+    })
     .catch(() => console.log('ERROR IN GETTING RESTAURANT GIVEN CONDITIONS'));
 };
 
@@ -22,7 +41,9 @@ const postToDb = rest => {
 
   return client.execute(nextIdQueryString())
     .then(nextIdResults => Number(nextIdResults.rows[0].nextid))
-    .catch(nextIdErr => console.log('ERROR IN GETTING NEXT RESTAURANT ID.'))
+    .catch(() => {
+      throw 'ERROR IN GETTING NEXT RESTAURANT ID.';
+    })
     .then(nextId => {
       rest.id = nextId;
       return client.execute(insertQueryString(rest));
@@ -31,10 +52,20 @@ const postToDb = rest => {
       insertResults = insertRes;
       return;
     })
-    .catch(insertRestErr => console.log('ERROR IN INSERTING RESTAURANT.'))
+    .catch(err => {
+      throw err === 'ERROR IN GETTING NEXT RESTAURANT ID.' ? err : 'ERROR IN INSERTING RESTAURANT.';
+    })
     .then(() => client.execute(updateNextId(rest.id + 1)))
     .then(() => insertResults)
-    .catch(updateNextIdErr => console.log('ERROR IN UPDATING NEXT RESTAURANT ID.'));
+    .catch(err => {
+      let errMsg;
+      if (err === 'ERROR IN GETTING NEXT RESTAURANT ID.' || err === 'ERROR IN INSERTING RESTAURANT.') {
+        errMsg = err;
+      } else {
+        errMsg = 'ERROR IN UPDATING NEXT RESTAURANT ID.';
+      }
+      console.log(errMsg);
+    });
 };
 
 

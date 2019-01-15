@@ -29,12 +29,12 @@ const selectQueryString = conditions => {
   let values = keys.map(key => conditions[key]);
   let keyValuePairStr = keyValPairStr(keys, values, 'AND');
   // Filtering is allowed for now as MVP for making the API CRUDdy
-  return `SELECT * FROM restaurant WHERE ${keyValuePairStr} ALLOW FILTERING;`;
+  return `SELECT * FROM restaurant WHERE ${keyValuePairStr};`;
 };
 
 
 // Returns query string to find the next id in the nextIdTable.
-const nextIdQueryString = () => `SELECT nextId FROM nextIdTable WHERE name='next' ALLOW FILTERING;`;
+const nextIdQueryString = () => `SELECT nextId FROM nextIdTable WHERE name='next';`;
 // Inserts a restaurant record into the restaurant table.
 const insertQueryString = rest => `INSERT INTO restaurant (id, name, address, number, picture, stars, quality, delivery, accuracy) VALUES(${rest.id}, '${rest.name}', '${rest.address}', '${rest.number}', '${rest.picture}', ${rest.stars}, ${rest.quality}, ${rest.delivery}, ${rest.accuracy});`;
 // Updates the nextIdTable to contain the new next id for the next restaurant.
