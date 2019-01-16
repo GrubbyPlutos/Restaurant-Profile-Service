@@ -10,7 +10,7 @@ const getReadAverage = async (dbName, port) => {
     
   for (let i = 0; i < iterations; i += 1) {
     let now = Date.now();
-    let promise = await axios.get(`http://localhost:${port}/restaurants/${get1To10M()}/profile`);
+    await axios.get(`http://localhost:${port}/restaurants/${get1To10M()}/profile`);
     let later = Date.now();
     sum += later - now;
   }
