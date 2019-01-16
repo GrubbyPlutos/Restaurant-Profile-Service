@@ -26,10 +26,7 @@ const getFromDb = conditions => {
   let selectQStr = selectQueryString(conditions);
 
   return client.execute(selectQStr)
-    .then(selectResults => {
-      console.log('SELECT RESULTS', selectResults);
-      return selectResults.rows;
-    })
+    .then(selectResults => selectResults.rows)
     .catch(() => console.log('ERROR IN GETTING RESTAURANT GIVEN CONDITIONS'));
 };
 
