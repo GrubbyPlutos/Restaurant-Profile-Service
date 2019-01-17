@@ -8,6 +8,8 @@ COPY restaurant (id, name, address, number, picture, stars, quality, delivery, a
 
 CREATE INDEX restaurant_names ON restaurant( name );
 
+CREATE INDEX id_idx ON restaurant( id );
+
 CREATE TABLE nextIdTable (name text PRIMARY KEY, nextId bigint);
 
 INSERT INTO nextIdTable (name, nextId) VALUES ('next', 10000001);

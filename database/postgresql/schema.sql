@@ -6,3 +6,5 @@ CREATE TABLE restaurants (id SERIAL PRIMARY KEY, name varchar(255), address varc
 
 COPY restaurants (name, address, number, picture, stars, quality, delivery, accuracy)
 FROM '<filepath>/dataNoId.csv'  DELIMITER ',' CSV HEADER;
+
+CREATE UNIQUE INDEX id_idx ON restaurants ( id );

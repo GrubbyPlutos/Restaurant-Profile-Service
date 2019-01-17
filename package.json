@@ -13,7 +13,8 @@
     "db": "mysql -u root -p < schema.sql",
     "seed": "node ./database/seeds.js",
     "react-dev": "webpack -d --watch",
-    "dockerise": "node ./database/seeds.js & node ./server/index.js"
+    "dockerise": "node ./database/seeds.js & node ./server/index.js",
+    "benchmark": "node ./database/benchmark/tests.js"
   },
   "dependencies": {
     "acorn": "^6.0.4",
