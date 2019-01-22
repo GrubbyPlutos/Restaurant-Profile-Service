@@ -1,16 +1,15 @@
+require('newrelic');
 const express = require('express');
+const cache = require('../database/redis-cache/index-redis');
 const bodyParser = require('body-parser');
-const db = require('../database/cassandra/index');
-const app = express();
-const PORT = 4000;
-const morgan = require('morgan');
 const path = require('path');
 const { parseNums } = require('./helpers');
 
-app.use(morgan('tiny'));
+const app = express();
+const PORT = 3001;
+
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: true}));
-
 app.use(express.static((__dirname + '/../client/dist')));
 
 // GET request to a specific ID to responds with the HTML file
@@ -20,17 +19,14 @@ app.get('/restaurants/:id', (req, res) => {
 
 // GET request responds with info about a restaurant with specific id 
 app.get('/restaurants/:id/profile', (req, res) => {
-  db.getFromDb({ id: Number(req.params.id) })
-    .then(restaurantResult => res.json(restaurantResult))
-    .catch(() => res.status(500));
+  let id = Number(req.params.id);
+  cache.getWrapper(id, res);
 });
 
 // POSTs new restaurant with unique id
 app.post('/restaurants/', (req, res) => {
   parseNums(req.body);
-
-  db.postToDb(req.body)
-    .then(restaurantResult => res.json(restaurantResult));
+  cache.postWrapper(req.body, res);
 });
 
 // PUT (update) request updates info about restaurant with specific id
@@ -38,14 +34,11 @@ app.put('/restaurants/:id', (req, res) => {
   parseNums(req.body);
 
   let updates = {
-    selectors: {
-      id: Number(req.params.id),
-    },
+    selectors: { id: Number(req.params.id), },
     updateChanges: req.body,
   };
 
-  db.updateInDb(updates)
-    .then(restaurantResult => res.json(restaurantResult));
+  cache.putWrapper(updates, res);
 });
 
 
@@ -57,8 +50,7 @@ app.delete('/restaurants/:id', (req, res) => {
     selectors: req.params,
   };
 
-  db.deleteFromDb(deleteRest)
-    .then(restaurantResult => res.json(restaurantResult));
+  cache.deleteWrapper(deleteRest, res);
 });
 
 app.listen(PORT, () => {

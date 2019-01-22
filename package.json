@@ -14,7 +14,8 @@
     "seed": "node ./database/seeds.js",
     "react-dev": "webpack -d --watch",
     "dockerise": "node ./database/seeds.js & node ./server/index.js",
-    "benchmark": "node ./database/benchmark/tests.js"
+    "benchmark": "node ./database/benchmark/tests.js",
+    "stress": "k6 run database/stresstest/get.js"
   },
   "dependencies": {
     "acorn": "^6.0.4",
@@ -30,6 +31,7 @@
     "react": "^15.6.1",
     "react-bootstrap": "^0.32.4",
     "react-dom": "^15.6.1",
+    "redis": "^2.8.0",
     "underscore": "^1.8.3",
     "webpack-cli": "^3.1.2"
   },
@@ -47,6 +49,7 @@
     "eslint-plugin-react": "^7.11.1",
     "faker": "^4.1.0",
     "morgan": "^1.9.1",
+    "newrelic": "^5.0.0",
     "style-loader": "^0.23.1",
     "webpack": "^2.2.1"
   }
