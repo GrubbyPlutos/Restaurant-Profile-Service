@@ -28,5 +28,5 @@ data.*
 dataNoId.*
 
 # New Relic Logs
-newrelic_agent*
+newrelic*
 dump.rdb
