@@ -5,6 +5,8 @@ const { selectQueryString,
   deleteQueryString } = require('./queryStringHelpers');
 
 const client = new Client({
+  user: 'postgres',
+  host: '54.67.60.124',
   database: 'profile_service',
   port: 5432,
 });
