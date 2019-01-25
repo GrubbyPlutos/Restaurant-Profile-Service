@@ -2,15 +2,8 @@ import http from 'k6/http';
 import { check, sleep } from 'k6';
 
 export let options = {
-  stages: [
-    { duration: '10s', target: 50 },
-    { duration: '10s', target: 100 },
-    { duration: '10s', target: 150 },
-    { duration: '10s', target: 200 },
-    { duration: '10s', target: 150 },
-    { duration: '10s', target: 100 },
-    { duration: '10s', target: 50 },
-  ],
+  vus: 60,
+  duration: '120s',
 };
 
 const directedTraffic = [
@@ -46,7 +39,7 @@ const getDirectedTrafic = () => {
 };
 
 export default function() {
-  let res = http.get(`http://localhost:3001/restaurants/${getDirectedTrafic()}/profile`);
+  let res = http.get(`http://54.215.144.139/restaurants/${getDirectedTrafic()}`);
   check(res, {
     'status was 200': (r) => r.status === 200,
     'transaction time OK': (r) => r.timings.duration < 200,
