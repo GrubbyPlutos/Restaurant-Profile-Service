@@ -23,7 +23,6 @@ const getFromDb = conditions => (
     .then(client => (
       client.query(selectQueryString(conditions))
         .then(selectResults => {
-          console.log('SUCCESS IN THE POOL/CONNECT STUFF');
           client.release();
           return selectResults.rows;
         })
