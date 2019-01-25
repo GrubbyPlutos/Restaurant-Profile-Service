@@ -1,10 +1,16 @@
-const db = require('../postgresql/index-postgresql');
+const db = require('../postgresql/index-postgresql-pool');
 // const db = require('../cassandra/index-cassandra');
 const redis = require('redis');
 const { updateRestaurant } = require('./helpers');
 
-cache = redis.createClient();
-cache.on('error', () => console.log('ERROR CREATING REDIS CACHE.'));
+cache = redis.createClient({
+  post: 6379,
+  host: '52.53.170.118'
+});
+cache.on('connect', function() {
+  console.log('Redis client connected!');
+});
+cache.on('error', (err) => console.log('ERROR CREATING REDIS CACHE.', err));
 cache.flushdb((err, succeeded) => console.log('Redis cache cleared'));
 
 
