@@ -15,4 +15,3 @@ cd SDC-Profile
 
 npm i
 npm i --save-dev nodemon
-npm run start
