@@ -11,7 +11,7 @@ sudo apt-get install k6
 echo "import http from 'k6/http';" >> stresstest.js
 echo "import { check, sleep } from 'k6';" >> stresstest.js
 echo "export let options = {" >> stresstest.js
-echo "  vus: 20," >> stresstest.js
+echo "  vus: 60," >> stresstest.js
 echo "  duration: '120s'," >> stresstest.js
 echo "};" >> stresstest.js
 echo "const directedTraffic = [" >> stresstest.js
@@ -45,7 +45,7 @@ echo "    return Math.ceil(Math.random() * 10000000);" >> stresstest.js
 echo "  }" >> stresstest.js
 echo "};" >> stresstest.js
 echo "export default function() {" >> stresstest.js
-echo "  let res = http.get(\`http://13.56.213.42:3001/restaurants/\${getDirectedTrafic()}\`);" >> stresstest.js
+echo "  let res = http.get(\`http://54.215.144.139/restaurants/\${getDirectedTrafic()}\`);" >> stresstest.js
 echo "  check(res, {" >> stresstest.js
 echo "    'status was 200': (r) => r.status === 200," >> stresstest.js
 echo "    'transaction time OK': (r) => r.timings.duration < 200," >> stresstest.js
@@ -67,4 +67,4 @@ echo "    \"k6\": \"0.0.0\"" >> package.json
 echo "  }" >> package.json
 echo "}" >> package.json
 
-npm i 
+npm i
