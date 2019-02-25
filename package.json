@@ -1,8 +1,8 @@
 {
-  "name": "GrubHub",
+  "name": "GrubbyHub",
   "version": "1.0.0",
-  "description": "HR-108-FEC-Project",
-  "author": "",
+  "description": "",
+  "author": "Jose Velez",
   "license": "ISC",
   "engines": {
     "node": ">=6.13.0"
