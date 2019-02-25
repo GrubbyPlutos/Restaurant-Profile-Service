@@ -7,7 +7,11 @@ In particular, this was the order and sequence of events that led to this scalin
   2. Implement a Redis in-memory cache. Result: Increase throughput to about 1000 RPS, decrease latency to 50 ms.
   3. Implement an Nginx load balancer that round robinned 6 servers all querying same database. Result: Increase my throughput to 1700 RPS, decrease latency to 30 ms.
   4. Rewrite the routes to query a PostgreSQL open pool instead of opening new database connections every time. Result: Increase throughput to 2000 RPS, decrease latency to 25 ms.
+<<<<<<< HEAD
 	5. TODO: Clone PostgreSQL database using Streaming replication. Result: expect throughput to increase to about 3.5 K, latency decrease by several ms. 
+=======
+	5. TODO: Clone PostgreSQL database using Streaming replication. Result: expect throughput to increase to about 3.5 K, latency decrease by several ms.
+>>>>>>> Update README with relevant info
 
 
 ## Related Microservices
