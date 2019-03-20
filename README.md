@@ -22,14 +22,13 @@ Benchmarking databases.  Cassandra vs. PostgreSQL performance for a simple SELEC
 <img src="/screenshots/010_read-query-cassandra.png" alt="Cassandra simple SELECT query execution time." width="700px" height="224px">
 <br />
 
-
 #### Bottomline
 | Database    |   time    | 
 | ----------- | --------- |
 | PostgreSQL  | 1.040 ms  |
 | CassandraDB | 12.049 ms |
 
-
+<br />
 
 ### Step 2: Database selection.
 
@@ -62,7 +61,7 @@ response time without caching, the right side is response time with caching. Cle
 #### Bottomline
 Latency time was halved from 400+ ms to 187 ms, throughput was more than doubled from 400 RPS to around 1050 RPS.
 
-
+<br />
 
 ### Step 4: Implement Nginx Load Balancer with Round Robin algorithm around 5 host servers
 
@@ -74,7 +73,7 @@ First, 2 host servers were configured:<br />
 <br />
 
 then, 5!<br />
-<img src="/screenshots/080_100K_throughput_with_5_servers.png" alt="5 host servers." width="650px" height="334px">
+<img src="/screenshots/080_100K-throughput_with_5_servers.png" alt="5 host servers." width="650px" height="334px">
 <br />
 
 Here, the servers:<br />
@@ -113,6 +112,7 @@ wouldn't be completed, and, thus, status 200 codes weren't 100% of the time. Aft
 validity of the connection, and thus it's way faster. And it doesn't seem that the latency in response decreased, rather
 throughput increased from ~1.8 K RPS to ~2.0 K RPS because of open connections to the PostgreSQL pool.
 
+<br />
 
 ### Final thoughts:
 
