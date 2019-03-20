@@ -15,11 +15,11 @@ Benchmarking databases.  Cassandra vs. PostgreSQL performance for a simple SELEC
 
 
 #### PostgreSQL: <br />
-<img src="/screenshots/000_read-query-postgres.png" alt="PostgreSQL simple SELECT query execution time." width="600px" height="60px">
+<img src="/screenshots/000_read-query-postgres.png" alt="PostgreSQL simple SELECT query execution time." width="700px" height="70px">
 <br />
 
 #### Cassandra:<br />
-<img src="/screenshots/010_read-query-cassandra.png" alt="Cassandra simple SELECT query execution time." width="600px" height="192px">
+<img src="/screenshots/010_read-query-cassandra.png" alt="Cassandra simple SELECT query execution time." width="700px" height="224px">
 <br />
 
 
@@ -36,7 +36,7 @@ Benchmarking databases.  Cassandra vs. PostgreSQL performance for a simple SELEC
 After indexing, PostgreSQL was chosen as the database for the project. Currently, the throughput was pretty low (about 400 RPS -- ignore the rpm in the picture below), and the latency high (328 ms / request).
 
 #### New Relic Dashboard showing number of transactions <br />
-<img src="/screenshots/020_metrics-w-o-caching.png" alt="New Relic Dashboard showing number of transactions." width="500px" height="243px">
+<img src="/screenshots/020_metrics-w-o-caching.png" alt="New Relic Dashboard showing number of transactions." width="650px" height="316px">
 <br />
 
 
@@ -55,7 +55,7 @@ GET, POST, PUT (todo: DELETE) routes were implemented with the Redis cache.
 You can see the left part of the graph is twice the size as the right part of the graph. The left part of the graph is the 
 response time without caching, the right side is response time with caching. Clearly, the response time was more than halved.
 <br />
-<img src="/screenshots/050_metrics-w-caching-and-w-o-caching-side-by-side.png" alt="Before and after using in-memory Redis cache." width="500px" height="243px">
+<img src="/screenshots/050_metrics-w-caching-and-w-o-caching-side-by-side.png" alt="Before and after using in-memory Redis cache." width="650px" height="316px">
 <br />
 
 
@@ -70,15 +70,15 @@ More host servers were configured in AWS EC2. Another EC2 instance was configure
 algorithm was configured to request in sequential order each of the servers.
 
 First, 2 host servers were configured:<br />
-<img src="/screenshots/070_2-servers-w-LB.png" alt="2 host servers." width="500px" height="252px">
+<img src="/screenshots/070_2-servers-w-LB.png" alt="2 host servers." width="650px" height="327px">
 <br />
 
 then, 5!<br />
-<img src="/screenshots/080_100K_throughput_with_5_servers.png" alt="5 host servers." width="500px" height="257px">
+<img src="/screenshots/080_100K_throughput_with_5_servers.png" alt="5 host servers." width="650px" height="334px">
 <br />
 
 Here, the servers:<br />
-<img src="/screenshots/081_5-servers.png" alt="Individual server throughput, error rate, response time and CPU usage." width="400px" height="267px">
+<img src="/screenshots/081_5-servers.png" alt="Individual server throughput, error rate, response time and CPU usage." width="450px" height="300px">
 <br />
 
 
@@ -97,7 +97,7 @@ open for queries.
 This is exactly what was done. 
 
 #### Connection timeouts without requesting from the PostgreSQL pool, using k6 (stresstesting library):<br />
-<img src="/screenshots/100_RPS-w-o-pool.png" alt="Using k6 to benchmark before connecting to the pool." width="600px" height="298px">
+<img src="/screenshots/100_RPS-w-o-pool.png" alt="Using k6 to benchmark before connecting to the pool." width="700px" height="347px">
 <br />
 
 #### Results after to a pool:<br />
@@ -117,7 +117,7 @@ throughput increased from ~1.8 K RPS to ~2.0 K RPS because of open connections t
 ### Final thoughts:
 
 #### Final results, after stresstesting for optimal performance: 3.56 ms latency & +2.5 K RPS<br />
-<img src="/screenshots/112_RPM-NewRelic.png" alt="Final results." width="500px" height="258px">
+<img src="/screenshots/112_RPM-NewRelic.png" alt="Final results." width="650px" height="335px">
 <br />
 
 Further steps could involve: 
