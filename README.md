@@ -78,7 +78,7 @@ then, 5!<br />
 <br />
 
 Here, the servers:<br />
-<img src="/screenshot/081_5-servers.png" alt="Individual server throughput, error rate, response time and CPU usage." width="400px" height="267px">
+<img src="/screenshots/081_5-servers.png" alt="Individual server throughput, error rate, response time and CPU usage." width="400px" height="267px">
 <br />
 
 
@@ -97,11 +97,11 @@ open for queries.
 This is exactly what was done. 
 
 #### Connection timeouts without requesting from the PostgreSQL pool, using k6 (stresstesting library):<br />
-<img src="/screenshot/100_RPS-w-o-pool.png" alt="Using k6 to benchmark before connecting to the pool." width="600px" height="298px">
+<img src="/screenshots/100_RPS-w-o-pool.png" alt="Using k6 to benchmark before connecting to the pool." width="600px" height="298px">
 <br />
 
 #### Results after to a pool:<br />
-<img src="/screenshot/110_RPS-w-Pool.png" alt="Using k6 to benchmark after connecting to the pool." width="500px" height="203px">
+<img src="/screenshots/110_RPS-w-Pool.png" alt="Using k6 to benchmark after connecting to the pool." width="500px" height="203px">
 <br />
 
 
@@ -117,7 +117,7 @@ throughput increased from ~1.8 K RPS to ~2.0 K RPS because of open connections t
 ### Final thoughts:
 
 #### Final results, after stresstesting for optimal performance: 3.56 ms latency & +2.5 K RPS<br />
-<img src="/screenshot/112_RPM-NewRelic.png" alt="Final results." width="500px" height="258px">
+<img src="/screenshots/112_RPM-NewRelic.png" alt="Final results." width="500px" height="258px">
 <br />
 
 Further steps could involve: 
